@@ -47,5 +47,14 @@ public abstract class Auditable {
         setUpdatedAt(LocalDateTime.now());
     }
 
+    @PreUpdate
+    public void beforeUpdate(){
+        var userId = 1L;
+        if(userId == null) {
+            throw new ApiException("Cannot update entity without user ID in Request Context for this thread");
+        };
+        setUpdatedAt(LocalDateTime.now());
+        setUpdatedBy(userId);
 
+    }
 }
