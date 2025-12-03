@@ -17,7 +17,25 @@ import java.time.LocalDateTime;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class User extends Auditable{
-
+    @Column(updatable = false, unique = true, nullable = false)
+    private String userId;
+    private String firstName;
+    private String lastName;
+    @Column(unique = true, nullable = false)
+    private String email;
+    private Integer loginAttempts;
+    private LocalDateTime lastLogin;
+    private String phone;
+    private String bio;
+    private String imageUrl;
+    private Boolean accountNonExpired;
+    private Boolean accountNonLocked;
+    private Boolean enabled;
+    private Boolean mfa;
+    @JsonIgnore
+    private String qrCodeSecret;
+    @Column(columnDefinition = "TEXT")
+    private String qrCodeImageUri;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinTable(name = "user_roles", joinColumns = @JoinColumn(
                                 name = "user_id", referencedColumnName = "id"),
