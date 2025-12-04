@@ -15,12 +15,5 @@ import lombok.*;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class Credential extends Auditable {
-    private String password;
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    private User user;
 
-    public Credential(User user, String password) {
-        this.user = user;
-        this.password = password;
-    }
 }
