@@ -24,8 +24,5 @@ public class Credential extends Auditable {
     @OnDelete(action = OnDeleteAction.CASCADE)
     private User user;
 
-    public Credential(User user, String password) {
-        this.user = user;
-        this.password = password;
-    }
+
 }
