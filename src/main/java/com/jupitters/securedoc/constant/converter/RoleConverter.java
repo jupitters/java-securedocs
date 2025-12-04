@@ -8,13 +8,7 @@ import java.util.stream.Stream;
 
 public class RoleConverter implements AttributeConverter<Authority, String> {
 
-    @Override
-    public String convertToDatabaseColumn(Authority authority) {
-        if(authority == null){
-            return null;
-        }
-        return authority.getValue();
-    }
+
 
     @Override
     public Authority convertToEntityAttribute(String s) {
