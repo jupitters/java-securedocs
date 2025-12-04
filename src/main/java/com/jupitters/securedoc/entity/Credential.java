@@ -2,6 +2,8 @@ package com.jupitters.securedoc.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.OneToOne;
 import lombok.*;
 
 @Getter
@@ -12,5 +14,13 @@ import lombok.*;
 @AllArgsConstructor
 @Entity
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
-public class Credential {
+public class Credential extends Auditable {
+    private String password;
+    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
+    private User user;
+
+    public Credential(User user, String password) {
+        this.user = user;
+        this.password = password;
+    }
 }
