@@ -18,11 +18,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class Credential extends Auditable {
-    private String password;
-    @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id", nullable = false)
-    @OnDelete(action = OnDeleteAction.CASCADE)
-    private User user;
+    
 
     public Credential(User user, String password) {
         this.user = user;
