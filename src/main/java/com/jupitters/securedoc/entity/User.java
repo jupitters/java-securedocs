@@ -32,14 +32,6 @@ public class User extends Auditable{
     private Boolean accountNonLocked;
     private Boolean enabled;
     private Boolean mfa;
-    @JsonIgnore
-    private String qrCodeSecret;
-    @Column(columnDefinition = "TEXT")
-    private String qrCodeImageUri;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles", joinColumns = @JoinColumn(
-                                name = "user_id", referencedColumnName = "id"),
-                                inverseJoinColumns = @JoinColumn(
-                                        name = "role_id", referencedColumnName = "id"))
+
     private Role role;
 }
