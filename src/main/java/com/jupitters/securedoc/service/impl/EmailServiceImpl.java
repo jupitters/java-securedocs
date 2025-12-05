@@ -20,20 +20,7 @@ public class EmailServiceImpl implements EmailService {
     @Value("${spring.mail.username}")
     private String fromMail;
 
-    @Override
-    public void sendNewAccountEmail(String name, String emailTo, String token) {
-        try{
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setSubject(NEW_USER_ACCOUNT_VERIFICATION);
-            message.setFrom(fromMail);
-            message.setTo(emailTo);
-            message.setText(getEmailMessage(name, host, token));
-            sender.send(message);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            throw new ApiException("Unable to send mail");
-        }
-    }
+
 
     @Override
     public void sendPasswordResetEmail(String name, String to, String token) {
