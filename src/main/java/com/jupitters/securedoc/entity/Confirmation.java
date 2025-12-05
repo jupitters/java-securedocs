@@ -9,6 +9,8 @@ import lombok.*;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
 
+import java.util.UUID;
+
 @Getter
 @Setter
 @ToString
@@ -18,7 +20,7 @@ import org.hibernate.annotations.OnDeleteAction;
 @Entity
 @JsonInclude(JsonInclude.Include.NON_DEFAULT)
 public class Confirmation extends Auditable {
-    private String password;
+    private String key;
     @OneToOne(targetEntity = User.class, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", nullable = false)
     @OnDelete(action = OnDeleteAction.CASCADE)
@@ -27,8 +29,8 @@ public class Confirmation extends Auditable {
     @JsonProperty("user_id")
     private User user;
 
-    public Confirmation(User user, String password) {
+    public Confirmation(User user) {
         this.user = user;
-        this.password = password;
+        this.key = UUID.randomUUID().toString();
     }
 }
