@@ -7,14 +7,15 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
 @Slf4j
 public class EmailServiceImpl implements EmailService {
-    public static final String NEW_USER_ACCOUNT_VERIFICATION = "New User Account Verification";
-    public static final String PASSWORD_RESET_REQUEST = "Reset Password Request";
+    private static final String NEW_USER_ACCOUNT_VERIFICATION = "New User Account Verification";
+    private static final String PASSWORD_RESET_REQUEST = "Reset Password Request";
     private final JavaMailSender sender;
     @Value("${spring.mail.verify.host}")
     private String host;
@@ -22,9 +23,10 @@ public class EmailServiceImpl implements EmailService {
     private String fromMail;
 
     @Override
+    @Async
     public void sendNewAccountEmail(String name, String emailTo, String token) {
         try{
-            SimpleMailMessage message = new SimpleMailMessage();
+            var message = new SimpleMailMessage();
             message.setSubject(NEW_USER_ACCOUNT_VERIFICATION);
             message.setFrom(fromMail);
             message.setTo(emailTo);
@@ -37,9 +39,10 @@ public class EmailServiceImpl implements EmailService {
     }
 
     @Override
+    @Async
     public void sendPasswordResetEmail(String name, String emailTo, String token) {
         try{
-            SimpleMailMessage message = new SimpleMailMessage();
+            var message = new SimpleMailMessage();
             message.setSubject(PASSWORD_RESET_REQUEST);
             message.setFrom(fromMail);
             message.setTo(emailTo);
