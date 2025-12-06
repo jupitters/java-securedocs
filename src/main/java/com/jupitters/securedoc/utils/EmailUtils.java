@@ -21,7 +21,7 @@ public class EmailUtils {
         return host + "/verify/account?token=" + token;
     }
 
-    public static String getPasswordResetUrl(String host, String token) {
-        return host + "/verify/account?token=" + token;
+    public static String getResetPasswordUrl(String host, String token) {
+        return host + "/verify/password?token=" + token;
     }
 }
