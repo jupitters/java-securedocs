@@ -1,4 +1,4 @@
-package com.jupitters.securedoc.constant.converter;
+package com.jupitters.securedoc.enums.converter;
 
 import com.jupitters.securedoc.enums.Authority;
 import jakarta.persistence.AttributeConverter;
