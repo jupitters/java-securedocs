@@ -1,4 +1,6 @@
 package com.jupitters.securedoc.enums;
 
-public class EventType {
+public enum EventType {
+    REGISTRATION,
+    RESET_PASSWORD
 }
