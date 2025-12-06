@@ -30,3 +30,7 @@ services:
       - 7000:6000
     volumes:
       - pgadminvolume:/var/lib/pgadmin
+      -
+  volumes:
+    pgadminvolume,
+    postgresvolume
