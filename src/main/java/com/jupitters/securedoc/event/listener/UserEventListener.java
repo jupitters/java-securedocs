@@ -21,6 +21,7 @@ public class UserEventListener {
             case RESET_PASSWORD -> emailService.sendNewAccountEmail(event.getUser().getFirstName(),
                     event.getUser().getEmail(),
                     (String)event.getData().get("key"));
+            default -> {}
         }
     }
 }
