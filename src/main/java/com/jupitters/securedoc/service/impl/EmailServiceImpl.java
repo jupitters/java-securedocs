@@ -24,7 +24,20 @@ public class EmailServiceImpl implements EmailService {
     private String fromMail;
 
     @Override
-
+    @Async
+    public void sendNewAccountEmail(String name, String emailTo, String token) {
+        try{
+            var message = new SimpleMailMessage();
+            message.setSubject(NEW_USER_ACCOUNT_VERIFICATION);
+            message.setFrom(fromMail);
+            message.setTo(emailTo);
+            message.setText(getEmailMessage(name, host, token));
+            sender.send(message);
+        } catch (Exception e) {
+            log.error(e.getMessage());
+            throw new ApiException("Unable to send mail");
+        }
+    }
 
     @Override
     @Async
