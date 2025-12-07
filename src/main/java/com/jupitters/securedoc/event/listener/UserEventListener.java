@@ -12,5 +12,16 @@ import org.springframework.stereotype.Component;
 public class UserEventListener {
     private final EmailService emailService;
 
-
+    @EventListener
+    public void onUserEvent(UserEvent event) {
+        switch (event.getType()) {
+            case REGISTRATION -> emailService.sendNewAccountEmail(event.getUser().getFirstName(),
+                    event.getUser().getEmail(),
+                    (String)event.getData().get("key"));
+            case RESET_PASSWORD -> emailService.sendNewAccountEmail(event.getUser().getFirstName(),
+                    event.getUser().getEmail(),
+                    (String)event.getData().get("key"));
+            default -> {}
+        }
+    }
 }
