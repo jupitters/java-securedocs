@@ -40,19 +40,5 @@ public class EmailServiceImpl implements EmailService {
         }
     }
 
-    @Override
-    @Async
-    public void sendPasswordResetEmail(String name, String emailTo, String token) {
-        try{
-            var message = new SimpleMailMessage();
-            message.setSubject(PASSWORD_RESET_REQUEST);
-            message.setFrom(fromMail);
-            message.setTo(emailTo);
-            message.setText(getResetPasswordMessage(name, host, token));
-            sender.send(message);
-        } catch (Exception e) {
-            log.error(e.getMessage());
-            throw new ApiException("Unable to send mail");
-        }
-    }
+
 }
