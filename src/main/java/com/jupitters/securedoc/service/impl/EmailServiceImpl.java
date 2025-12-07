@@ -17,12 +17,7 @@ import static com.jupitters.securedoc.utils.EmailUtils.getResetPasswordMessage;
 @Slf4j
 public class EmailServiceImpl implements EmailService {
     private static final String NEW_USER_ACCOUNT_VERIFICATION = "New User Account Verification";
-    private static final String PASSWORD_RESET_REQUEST = "Reset Password Request";
-    private final JavaMailSender sender;
-    @Value("${spring.mail.verify.host}")
-    private String host;
-    @Value("${spring.mail.username}")
-    private String fromMail;
+
 
     @Override
     @Async
