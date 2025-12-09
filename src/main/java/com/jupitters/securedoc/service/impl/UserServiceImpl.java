@@ -2,10 +2,12 @@ package com.jupitters.securedoc.service.impl;
 
 import com.jupitters.securedoc.entity.Confirmation;
 import com.jupitters.securedoc.entity.Credential;
+import com.jupitters.securedoc.entity.Role;
 import com.jupitters.securedoc.entity.User;
 import com.jupitters.securedoc.enums.Authority;
 import com.jupitters.securedoc.enums.EventType;
 import com.jupitters.securedoc.event.UserEvent;
+import com.jupitters.securedoc.exception.ApiException;
 import com.jupitters.securedoc.repository.ConfirmationRepository;
 import com.jupitters.securedoc.repository.CredentialRepository;
 import com.jupitters.securedoc.repository.RoleRepository;
@@ -43,8 +45,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getRoleName(String name) {
-        return null;
+    public Role getRoleName(String name) {
+        var role = roleRepository.findByNameIgnoreCase(name);
+        return role.orElseThrow(() -> new ApiException("Role not found!"));
     }
 
     private User createNewUser(String firstName, String lastName, String email) {
