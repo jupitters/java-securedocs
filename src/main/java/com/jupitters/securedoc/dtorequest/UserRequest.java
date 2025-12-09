@@ -1,6 +1,7 @@
 package com.jupitters.securedoc.dtorequest;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,6 +15,7 @@ public class UserRequest {
     @NotEmpty(message = "Last name cannot be empty or null!")
     private String lastName;
     @NotEmpty(message = "Email name cannot be empty or null!")
+    @Email(message = "Invalid email address!")
     private String email;
     @NotEmpty(message = "Password name cannot be empty or null!")
     private String password;
