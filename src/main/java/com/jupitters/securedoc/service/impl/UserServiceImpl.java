@@ -42,6 +42,11 @@ public class UserServiceImpl implements UserService {
         publisher.publishEvent(new UserEvent(user, EventType.REGISTRATION, Map.of("key", confirmation.getKey())));
     }
 
+    @Override
+    public User getRoleName(String name) {
+        return null;
+    }
+
     private User createNewUser(String firstName, String lastName, String email) {
         var role = getRoleName(Authority.USER.name());
         return createUserEntity(firstName, lastName, email, role);
