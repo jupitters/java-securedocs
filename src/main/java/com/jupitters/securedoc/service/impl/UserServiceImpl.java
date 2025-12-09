@@ -2,6 +2,8 @@ package com.jupitters.securedoc.service.impl;
 
 import com.jupitters.securedoc.entity.Confirmation;
 import com.jupitters.securedoc.entity.Credential;
+import com.jupitters.securedoc.entity.User;
+import com.jupitters.securedoc.enums.Authority;
 import com.jupitters.securedoc.enums.EventType;
 import com.jupitters.securedoc.event.UserEvent;
 import com.jupitters.securedoc.repository.ConfirmationRepository;
@@ -38,5 +40,10 @@ public class UserServiceImpl implements UserService {
         var confirmation = new Confirmation(user);
         confirmationRepository.save(confirmation);
         publisher.publishEvent(new UserEvent(user, EventType.REGISTRATION, Map.of("key", confirmation.getKey())));
+    }
+
+    private User createNewUser(String firstName, String lastName, String email) {
+        var role = getRoleName(Authority.USER.name());
+        return createUserEntity(firstName, lastName, email, role);
     }
 }
