@@ -26,3 +26,9 @@ spring:
           globally_quoted_identifiers: true
           dialect: org.hibernate.dialect.PostgreSQLDialect
           format_sql: true
+    sql:
+      init:
+        mode: never
+        continue-on-error: false
+        schema-locations: classpath:/data/schema.sql
+        data-locations: classpath:/data/data.sql
