@@ -10,3 +10,7 @@ spring:
         write-date-keys-as-timestamps: false
       deserialization:
         fail-on-unknown-properties: false
+    datasource:
+      url: jdbcpostgresql://${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/${POSTGRESQL_DATABASE}
+      username: ${POSTGRESQL_USERNAME}
+      password: ${POSTGRESQL_PASSWORD}
