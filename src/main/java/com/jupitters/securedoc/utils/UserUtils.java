@@ -7,10 +7,10 @@ import java.time.LocalDateTime;
 import java.util.UUID;
 
 import static java.time.LocalTime.now;
-import static jdk.internal.org.jline.utils.AttributedString.EMPTY;
+import static org.apache.logging.log4j.util.Strings.EMPTY;
 
 public class UserUtils {
-    public User createUserEntity(String firstName, String lastName, String email, Role role) {
+    public static User createUserEntity(String firstName, String lastName, String email, Role role) {
         return User.builder()
                 .userId(UUID.randomUUID().toString())
                 .firstName(firstName)

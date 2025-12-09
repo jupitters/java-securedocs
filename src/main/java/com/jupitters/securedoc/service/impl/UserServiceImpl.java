@@ -22,6 +22,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.Map;
 
+import static com.jupitters.securedoc.utils.UserUtils.createUserEntity;
+
 @Service
 @Transactional(rollbackOn =  Exception.class)
 @RequiredArgsConstructor
