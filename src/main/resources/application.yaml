@@ -14,3 +14,15 @@ spring:
       url: jdbcpostgresql://${POSTGRESQL_HOST}:${POSTGRESQL_PORT}/${POSTGRESQL_DATABASE}
       username: ${POSTGRESQL_USERNAME}
       password: ${POSTGRESQL_PASSWORD}
+    jpa:
+      open-in-view: false
+      database-platform: org.hibernate.dialect.PostgreSQLInnoDBDialect
+      generate-ddl: true
+      show-sql: true
+      hibernate:
+        ddl-auto: update
+      properties:
+        hibernate:
+          globally_quoted_identifiers: true
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          format_sql: true
