@@ -1,5 +1,7 @@
 package com.jupitters.securedoc.resource;
 
+import com.jupitters.securedoc.domain.Response;
+import com.jupitters.securedoc.dtorequest.UserRequest;
 import com.jupitters.securedoc.service.UserService;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
@@ -18,6 +20,7 @@ public class UserResource {
 
     @PostMapping("/register")
     public ResponseEntity<Response> saveUser(@RequestBody @Valid UserRequest user, HttpServletRequest request) {
-
+        userService.createUser(user.getFirstName(), user.getLastName(), user.getEmail(), user.getPassword());
+        return ResponseEntity.created(getUri()).body(getResponse(request, emptyMap(), "Account Created! Check your email to enable your account.", CREATED));
     }
 }
