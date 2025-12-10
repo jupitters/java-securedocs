@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.net.URI;
 
 import static com.jupitters.securedoc.utils.RequestUtils.getResponse;
+import static java.util.Collections.emptyMap;
 
 @RestController
 @RequestMapping(path = "/user")
