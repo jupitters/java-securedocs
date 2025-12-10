@@ -23,6 +23,7 @@ public class SecuredocApplication {
 			var userRole = new Role();
 			userRole.setName(Authority.USER.name());
 			userRole.setAuthorities(Authority.USER);
+			roleRepository.save(userRole);
 
 			var adminRole = new Role();
 			adminRole.setName(Authority.ADMIN.name());
