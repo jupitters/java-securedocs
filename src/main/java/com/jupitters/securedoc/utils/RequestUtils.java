@@ -10,7 +10,7 @@ import java.util.Map;
 import static org.apache.logging.log4j.util.Strings.EMPTY;
 
 public class RequestUtils {
-    public Response getResponse(HttpServletRequest request, Map<?, ?> data, String message, HttpStatus status) {
+    public static Response getResponse(HttpServletRequest request, Map<?, ?> data, String message, HttpStatus status) {
         return new Response(LocalDateTime.now().toString(), status.value(), request.getRequestURI(), HttpStatus.valueOf(status.value()), message, EMPTY, data);
     }
 }

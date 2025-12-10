@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.net.URI;
 
+import static com.jupitters.securedoc.utils.RequestUtils.getResponse;
+
 @RestController
 @RequestMapping(path = "/user")
 @RequiredArgsConstructor
@@ -26,7 +28,7 @@ public class UserResource {
         return ResponseEntity.created(getUri()).body(getResponse(request, emptyMap(), "Account Created! Check your email to enable your account.", CREATED));
     }
 
-    private URI getUti() {
+    private URI getUri() {
         return URI.create("");
     }
 }
