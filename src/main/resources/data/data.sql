@@ -1,2 +1,4 @@
-INSERT INTO users (id, user_id, first_name, last_name, email, phone, bio, reference_id, image_url, created_by, updated_by)
-VALUES (0, '023a7479-e7a7-079f-3ae5-a766fe25eca9', 'System', 'System', 'system@email.com', '1234654', 'Nota user', '897f3898-31ed-654a-eb93-531648a0db88', 'https://cdn-icons-png.falticon.com/128/2911/2911833.png', 0, 0);
+INSERT INTO users (id, user_id, first_name, last_name, email, phone, bio, reference_id, image_url, created_by, updated_by, created_at, updated_at)
+VALUES (0, '023a7479-e7a7-079f-3ae5-a766fe25eca9', 'System', 'System', 'system@email.com', '1234654',
+        'Nota user', '897f3898-31ed-654a-eb93-531648a0db88', 'https://cdn-icons-png.falticon.com/128/2911/2911833.png',
+        0, 0, '2025-01-29 22:10:47.725642', '2025-01-29 22:10:47.725642');
