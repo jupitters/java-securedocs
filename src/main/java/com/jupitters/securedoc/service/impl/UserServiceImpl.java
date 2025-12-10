@@ -61,6 +61,11 @@ public class UserServiceImpl implements UserService {
         confirmationRepository.delete(confirmationEntity);
     }
 
+    private User getUserEntityByEmail(String email) {
+        var userByEmail = userRepository.findByEmailIgnoreCase(email);
+        return userByEmail.orElseThrow(() -> new ApiException("User not found!"));
+    }
+
     private Object getUserConfirmation(String key) {
         return confirmationRepository.findByKey(key);
     }
