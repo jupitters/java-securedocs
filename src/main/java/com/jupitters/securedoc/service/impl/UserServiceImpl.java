@@ -67,7 +67,7 @@ public class UserServiceImpl implements UserService {
     }
 
     private Confirmation getUserConfirmation(String key) {
-        return confirmationRepository.findByKey(key).orElse(null);
+        return confirmationRepository.findByKey(key).orElseThrow(() -> new ApiException("Key not found!"));
     }
 
     private User createNewUser(String firstName, String lastName, String email) {
