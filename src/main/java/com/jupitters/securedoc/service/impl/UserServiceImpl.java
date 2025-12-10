@@ -54,8 +54,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void verifyAccountKey(String key) {
-        Confirmation confirmationEntity = getUserConfirmation(key);
-        User userEntity = getUserEntityByEmail(confirmationEntity.getUser().getEmail());
+        var confirmationEntity = getUserConfirmation(key);
+        var userEntity = getUserEntityByEmail(confirmationEntity.getUser().getEmail());
         userEntity.setEnabled(true);
         userRepository.save(userEntity);
         confirmationRepository.delete(confirmationEntity);
@@ -66,8 +66,8 @@ public class UserServiceImpl implements UserService {
         return userByEmail.orElseThrow(() -> new ApiException("User not found!"));
     }
 
-    private Object getUserConfirmation(String key) {
-        return confirmationRepository.findByKey(key);
+    private Confirmation getUserConfirmation(String key) {
+        return confirmationRepository.findByKey(key).orElse(null);
     }
 
     private User createNewUser(String firstName, String lastName, String email) {
