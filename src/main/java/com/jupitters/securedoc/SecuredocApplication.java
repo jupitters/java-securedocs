@@ -1,7 +1,13 @@
 package com.jupitters.securedoc;
 
+import com.jupitters.securedoc.domain.RequestContext;
+import com.jupitters.securedoc.entity.Role;
+import com.jupitters.securedoc.enums.Authority;
+import com.jupitters.securedoc.repository.RoleRepository;
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class SecuredocApplication {
@@ -10,4 +16,12 @@ public class SecuredocApplication {
 		SpringApplication.run(SecuredocApplication.class, args);
 	}
 
+	@Bean
+	CommandLineRunner commandLineRunner(RoleRepository roleRepository) {
+		return args -> {
+			RequestContext.setUserId(0L);
+			var userRole = new Role();
+			userRole.setName(Authority.USER.name());
+		}
+	}
 }

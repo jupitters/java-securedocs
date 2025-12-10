@@ -16,6 +16,7 @@ import java.net.URI;
 
 import static com.jupitters.securedoc.utils.RequestUtils.getResponse;
 import static java.util.Collections.emptyMap;
+import static org.springframework.http.HttpStatus.CREATED;
 
 @RestController
 @RequestMapping(path = "/user")
