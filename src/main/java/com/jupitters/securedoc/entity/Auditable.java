@@ -29,15 +29,6 @@ public abstract class Auditable {
     private Long createdBy;
     @NotNull
     private Long updatedBy;
-
-    @OneToOne
-    @JoinColumn(
-            name = "owner_id",
-            referencedColumnName = "id",
-            foreignKey = @ForeignKey(name = "fk_user_owner", value = ConstraintMode.CONSTRAINT)
-    )
-    private User owner;
-
     @NotNull
     @CreatedDate
     @Column(name = "created_at", nullable = false, updatable = false)
