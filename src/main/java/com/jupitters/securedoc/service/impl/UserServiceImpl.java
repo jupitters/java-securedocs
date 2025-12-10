@@ -52,6 +52,11 @@ public class UserServiceImpl implements UserService {
         return role.orElseThrow(() -> new ApiException("Role not found!"));
     }
 
+    @Override
+    public void verifyAccountKey(String token) {
+
+    }
+
     private User createNewUser(String firstName, String lastName, String email) {
         var role = getRoleName(Authority.USER.name());
         return createUserEntity(firstName, lastName, email, role);

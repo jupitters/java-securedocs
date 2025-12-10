@@ -7,6 +7,5 @@ import com.jupitters.securedoc.enums.Authority;
 public interface UserService {
     void createUser(String firstName, String lastName, String email, String password);
     Role getRoleName(String name);
-
     void verifyAccountKey(String token);
 }
