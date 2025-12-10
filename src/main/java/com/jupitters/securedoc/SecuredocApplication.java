@@ -22,6 +22,12 @@ public class SecuredocApplication {
 			RequestContext.setUserId(0L);
 			var userRole = new Role();
 			userRole.setName(Authority.USER.name());
-		}
+			userRole.setAuthorities(Authority.USER);
+
+			var adminRole = new Role();
+			adminRole.setName(Authority.ADMIN.name());
+			adminRole.setAuthorities(Authority.ADMIN);
+			roleRepository.save(adminRole);
+		};
 	}
 }
