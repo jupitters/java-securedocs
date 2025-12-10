@@ -53,8 +53,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void verifyAccountKey(String token) {
+    public void verifyAccountKey(String key) {
+        Confirmation confirmationEntity = getUserConfirmation(key);
+        User userEntity = getUserEntityByEmail(confirmationEntity.getUser().getEmail());
+        userEntity.setEnabled(true);
+        userRepository.save(userEntity);
+        confirmationRepository.delete(confirmationEntity);
+    }
 
+    private Object getUserConfirmation(String key) {
+        return confirmationRepository.findByKey(key);
     }
 
     private User createNewUser(String firstName, String lastName, String email) {
