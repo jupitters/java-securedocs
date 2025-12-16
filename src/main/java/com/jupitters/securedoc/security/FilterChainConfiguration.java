@@ -25,7 +25,7 @@ public class FilterChainConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .authorizeHttpRequests(request ->
-                        request.requestMatchers("/users/test").permitAll()
+                        request.requestMatchers("/user/test").permitAll()
                                 .anyRequest().authenticated())
                                 .build();
     }
