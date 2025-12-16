@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -39,7 +40,7 @@ public class UserResource {
 
     @PostMapping("/login")
     public ResponseEntity<Response> login(@RequestBody UserRequest user) {
-        authenticationManager.authenticate(UsernamePasswordAuthenticationToken
+        Authentication authenticate = authenticationManager.authenticate(UsernamePasswordAuthenticationToken
                         .unauthenticated(user.getEmail(), user.getPassword()));
         return ResponseEntity.ok().build();
     }
