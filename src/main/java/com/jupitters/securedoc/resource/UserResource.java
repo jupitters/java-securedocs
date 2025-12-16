@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
+import java.util.Map;
 
 import static com.jupitters.securedoc.utils.RequestUtils.getResponse;
 import static java.util.Collections.emptyMap;
@@ -39,10 +40,10 @@ public class UserResource {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<Response> login(@RequestBody UserRequest user) {
+    public ResponseEntity<?> login(@RequestBody UserRequest user) {
         Authentication authenticate = authenticationManager.authenticate(UsernamePasswordAuthenticationToken
                         .unauthenticated(user.getEmail(), user.getPassword()));
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok().body(Map.of("user", authenticate), OK);
     }
 
     private URI getUri() {
