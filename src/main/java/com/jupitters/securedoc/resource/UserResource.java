@@ -34,8 +34,8 @@ public class UserResource {
         return ResponseEntity.ok().body(getResponse(request, emptyMap(), "Account verified!", OK));
     }
 
-    @GetMapping("/test")
-    public ResponseEntity<Response> test() {
+    @PostMapping("/login")
+    public ResponseEntity<Response> login(@RequestBody UserRequest user) {
         return ResponseEntity.ok().build();
     }
 
