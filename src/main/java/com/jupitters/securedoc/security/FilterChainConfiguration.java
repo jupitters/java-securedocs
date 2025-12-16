@@ -5,6 +5,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
 
 @Configuration
@@ -14,6 +15,10 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 public class FilterChainConfiguration {
     @Bean
     public UserDetailsService userDetailsService() {
-
+        var user1 = User.withDefaultPasswordEncoder()
+                .username("Ana")
+                .password("password")
+                .roles("USER")
+                .build();
     }
 }
