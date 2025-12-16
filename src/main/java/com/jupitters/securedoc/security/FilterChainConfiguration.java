@@ -7,6 +7,9 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+
+import java.util.List;
 
 @Configuration
 @EnableWebSecurity
@@ -20,6 +23,6 @@ public class FilterChainConfiguration {
                 .password("password")
                 .roles("USER")
                 .build();
-        return new
+        return new InMemoryUserDetailsManager(List.of(user1));
     }
 }
