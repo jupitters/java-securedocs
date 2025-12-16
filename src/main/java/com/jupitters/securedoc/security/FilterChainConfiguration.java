@@ -21,14 +21,7 @@ import java.util.List;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class FilterChainConfiguration {
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http
-                .authorizeHttpRequests(request ->
-                        request.requestMatchers("/users/test").permitAll()
-                                .anyRequest().authenticated())
-                                .build();
-    }
+
 
     @Bean
     public AuthenticationManager authenticationManager(UserDetailsService userDetailsService) throws Exception {
