@@ -7,6 +7,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
@@ -21,6 +22,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 public class UserResource {
     private final UserService userService;
+    private AuthenticationManager authenticationManager;
 
     @PostMapping("/register")
     public ResponseEntity<Response> saveUser(@RequestBody @Valid UserRequest user, HttpServletRequest request) {
@@ -36,6 +38,7 @@ public class UserResource {
 
     @PostMapping("/login")
     public ResponseEntity<Response> login(@RequestBody UserRequest user) {
+        authenticationManager.authenticate();
         return ResponseEntity.ok().build();
     }
 
