@@ -19,7 +19,11 @@ import java.util.List;
 @EnableMethodSecurity
 @RequiredArgsConstructor
 public class FilterChainConfiguration {
-
+    @Bean
+    public AuthenticationManager authenticationManager(UserDetailsService userDetailsService) throws Exception {
+        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider(userDetailsService);
+        return new ProviderManager(daoAuthenticationProvider);
+    }
 
     @Bean
     public UserDetailsService userDetailsService() {
