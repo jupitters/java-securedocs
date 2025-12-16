@@ -23,6 +23,11 @@ public class FilterChainConfiguration {
                 .password("password")
                 .roles("USER")
                 .build();
-        return new InMemoryUserDetailsManager(List.of(user1));
+        var user2 = User.withDefaultPasswordEncoder()
+                .username("Bruno")
+                .password("password")
+                .roles("USER")
+                .build();
+        return new InMemoryUserDetailsManager(List.of(user1, user2));
     }
 }
