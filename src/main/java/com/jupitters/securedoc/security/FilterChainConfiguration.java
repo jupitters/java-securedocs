@@ -20,5 +20,6 @@ public class FilterChainConfiguration {
                 .password("password")
                 .roles("USER")
                 .build();
+        return new
     }
 }
