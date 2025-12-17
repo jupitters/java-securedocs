@@ -38,20 +38,20 @@ public class FilterChainConfiguration {
         return new ProviderManager(daoAuthenticationProvider);
     }
 
-    @Bean
-    public UserDetailsService userDetailsService() {
-        var user1 = User.withDefaultPasswordEncoder()
-                .username("Ana")
-                .password("password")
-                .roles("USER")
-                .build();
-        var user2 = User.withDefaultPasswordEncoder()
-                .username("Bruno")
-                .password("password")
-                .roles("USER")
-                .build();
-        return new InMemoryUserDetailsManager(List.of(user1, user2));
-    }
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        var user1 = User.withDefaultPasswordEncoder()
+//                .username("Ana")
+//                .password("password")
+//                .roles("USER")
+//                .build();
+//        var user2 = User.withDefaultPasswordEncoder()
+//                .username("Bruno")
+//                .password("password")
+//                .roles("USER")
+//                .build();
+//        return new InMemoryUserDetailsManager(List.of(user1, user2));
+//    }
 
     //mesma coisa do bean acima
     @Bean
