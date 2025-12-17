@@ -43,7 +43,7 @@ public class UserResource {
     public ResponseEntity<?> login(@RequestBody UserRequest user) {
         UsernamePasswordAuthenticationToken unauthenticated = UsernamePasswordAuthenticationToken.unauthenticated(
                 user.getEmail(), user.getPassword());
-        Authentication authenticate = authenticationManager.authenticate(unauthenticated)
+        Authentication authenticate = authenticationManager.authenticate(unauthenticated);
         return ResponseEntity.ok().body(Map.of("user", authenticate));
     }
 

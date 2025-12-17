@@ -8,7 +8,7 @@ import org.springframework.security.core.AuthenticationException;
 public class NewAuthenticationProvider implements AuthenticationProvider {
     @Override
     public @Nullable Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        return null;
+        var user = (UsernamePasswordA)
     }
 
     @Override
