@@ -3,6 +3,7 @@ package com.jupitters.securedoc.security;
 import lombok.RequiredArgsConstructor;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
@@ -19,10 +20,10 @@ public class NewAuthenticationProvider implements AuthenticationProvider {
         var user = (UsernamePasswordAuthenticationToken) authentication;
         var userFromDb = userDetailsService.loadUserByUsername((String)user.getPrincipal());
 
-        if(((String)user.getCredentials()).equals(userFromDb.getPassword())) {
-
+        if((user.getCredentials()).equals(userFromDb.getPassword())) {
+            return UsernamePasswordAuthenticationToken.authenticated(userFromDb, "[PASSWORD_PROTECTED]", null)
         }
-
+        throw new BadCredentialsException("Unable to login!");
     }
 
     @Override
