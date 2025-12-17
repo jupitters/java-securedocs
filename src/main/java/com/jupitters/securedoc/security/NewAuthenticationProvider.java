@@ -15,17 +15,7 @@ import org.springframework.stereotype.Component;
 public class NewAuthenticationProvider implements AuthenticationProvider {
     private final UserDetailsService userDetailsService;
 
-    @Override
-    public @Nullable Authentication authenticate(Authentication authentication) throws AuthenticationException {
-        var user = (UsernamePasswordAuthenticationToken) authentication;
-        var userFromDb = userDetailsService.loadUserByUsername((String)user.getPrincipal());
 
-        var password = (String)user.getCredentials();
-        if(password.equals(userFromDb.getPassword())) {
-            return UsernamePasswordAuthenticationToken.authenticated(userFromDb, "[PASSWORD_PROTECTED]", userFromDb.getAuthorities());
-        }
-        throw new BadCredentialsException("Unable to login!");
-    }
 
     @Override
     public boolean supports(Class<?> authentication) {
