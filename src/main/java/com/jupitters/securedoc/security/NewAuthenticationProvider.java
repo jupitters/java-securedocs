@@ -20,7 +20,8 @@ public class NewAuthenticationProvider implements AuthenticationProvider {
         var user = (UsernamePasswordAuthenticationToken) authentication;
         var userFromDb = userDetailsService.loadUserByUsername((String)user.getPrincipal());
 
-        if((user.getCredentials()).equals(userFromDb.getPassword())) {
+        var password = (String)user.getCredentials();
+        if(password.equals(userFromDb.getPassword())) {
             return UsernamePasswordAuthenticationToken.authenticated(userFromDb, "[PASSWORD_PROTECTED]", userFromDb.getAuthorities());
         }
         throw new BadCredentialsException("Unable to login!");
