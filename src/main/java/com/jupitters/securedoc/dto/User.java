@@ -9,20 +9,21 @@ import java.time.LocalDateTime;
 
 @Data
 public class User {
+    private String id;
     private String userId;
     private String firstName;
     private String lastName;
     private String email;
-    private Integer loginAttempts;
-    private LocalDateTime lastLogin;
     private String phone;
     private String bio;
+    private Integer loginAttempts;
     private String imageUrl;
+    private String qrCodeImageUri;
+    private String qrCodeSecret;
+    private String lastLogin;
     private Boolean accountNonExpired;
     private Boolean accountNonLocked;
     private Boolean enabled;
     private Boolean mfa;
-    private String qrCodeSecret;
-    private String qrCodeImageUri;
     private Role role;
 }
