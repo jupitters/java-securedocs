@@ -7,6 +7,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
@@ -16,6 +17,11 @@ public class NewAuthenticationProvider implements AuthenticationProvider {
     @Override
     public @Nullable Authentication authenticate(Authentication authentication) throws AuthenticationException {
         var user = (UsernamePasswordAuthenticationToken) authentication;
+        var userFromDb = userDetailsService.loadUserByUsername((String)user.getPrincipal());
+
+        if(((String)user.getCredentials()).equals(userFromDb.getPassword())) {
+
+        }
 
     }
 
