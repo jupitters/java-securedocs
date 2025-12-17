@@ -52,4 +52,13 @@ public class FilterChainConfiguration {
                 .build();
         return new InMemoryUserDetailsManager(List.of(user1, user2));
     }
+
+    //mesma coisa do bean acima
+    @Bean
+    public InMemoryUserDetailsManager inMemoryUserDetailsManager() {
+        return new InMemoryUserDetailsManager(
+                User.withUsername("Carlos").password("password").roles("USER").build(),
+                User.withUsername("Daniela").password("password").roles("USER").build()
+        );
+    }
 }
