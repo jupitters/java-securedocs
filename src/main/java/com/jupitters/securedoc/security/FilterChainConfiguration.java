@@ -34,7 +34,7 @@ public class FilterChainConfiguration {
 
     @Bean
     public AuthenticationManager authenticationManager(UserDetailsService userDetailsService) throws Exception {
-        DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider(userDetailsService);
+        var daoAuthenticationProvider = new NewAuthenticationProvider(userDetailsService);
         return new ProviderManager(daoAuthenticationProvider);
     }
 
