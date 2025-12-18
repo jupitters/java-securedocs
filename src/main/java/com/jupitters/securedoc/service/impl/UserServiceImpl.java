@@ -1,5 +1,6 @@
 package com.jupitters.securedoc.service.impl;
 
+import com.jupitters.securedoc.cache.CacheStore;
 import com.jupitters.securedoc.domain.RequestContext;
 import com.jupitters.securedoc.entity.Confirmation;
 import com.jupitters.securedoc.entity.Credential;
@@ -37,6 +38,7 @@ public class UserServiceImpl implements UserService {
     private final CredentialRepository credentialRepository;
     private final ConfirmationRepository confirmationRepository;
     private final BCryptPasswordEncoder encoder;
+    private final CacheStore<String, Integer> userCache;
     private final ApplicationEventPublisher publisher;
 
     @Override
@@ -70,9 +72,20 @@ public class UserServiceImpl implements UserService {
         RequestContext.setUserId(user.getId());
 
         switch (loginType) {
-            case LOGIN_ATTEMPT -> {}
+            case LOGIN_ATTEMPT -> {
+                if (userCache.get(user.getEmail()) == null) {
+                    user.setLoginAttempts(0);
+                    user.setAccountNonLocked(true);
+                }
+                user.setLoginAttempts(user.getLoginAttempts() + 1);
+                userCache.put(user.getEmail(), user.getLoginAttempts());
+                if (userCache.get(user.getEmail()) > 5) {
+                    user.setAccountNonLocked(false);
+                }
+            }
             case LOGIN_SUCCESS -> {}
         }
+        userRepository.save(user);
     }
 
     private User getUserEntityByEmail(String email) {

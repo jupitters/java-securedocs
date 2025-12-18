@@ -24,7 +24,7 @@ public class CacheStore<K, V> {
         return cache.getIfPresent(key);
     }
 
-    public void pit(@NotNull K key, @NotNull V value) {
+    public void put(@NotNull K key, @NotNull V value) {
         log.info("Storing record in Cache for key {}", key.toString());
         cache.put(key, value);
     }
