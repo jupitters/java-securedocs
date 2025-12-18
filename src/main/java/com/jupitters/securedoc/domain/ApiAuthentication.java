@@ -16,19 +16,27 @@ public class ApiAuthentication extends AbstractAuthenticationToken {
     private String password;
     private boolean authenticated;
 
-    public ApiAuthentication(String email, String password) {
+    private ApiAuthentication(String email, String password) {
         super(AuthorityUtils.NO_AUTHORITIES);
         this.password = password;
         this.email = email;
         this.authenticated = false;
     }
 
-    public ApiAuthentication(User user, @Nullable Collection<? extends GrantedAuthority> authorities) {
+    private ApiAuthentication(User user, @Nullable Collection<? extends GrantedAuthority> authorities) {
         super(authorities);
         this.user = user;
         this.password = PASSWORD_PROTECTED;
         this.email = EMAIL_PROTECTED;
         this.authenticated = true;
+    }
+
+    public static ApiAuthentication unauthenticated(String email, String password) {
+        return new ApiAuthentication(email, password)
+    }
+
+    public static ApiAuthentication authenticated(User user, @Nullable Collection<? extends GrantedAuthority> authorities) {
+        return new ApiAuthentication(user, authorities);
     }
 
     @Override
