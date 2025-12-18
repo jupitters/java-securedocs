@@ -32,7 +32,7 @@ public class ApiAuthentication extends AbstractAuthenticationToken {
     }
 
     public static ApiAuthentication unauthenticated(String email, String password) {
-        return new ApiAuthentication(email, password)
+        return new ApiAuthentication(email, password);
     }
 
     public static ApiAuthentication authenticated(User user, @Nullable Collection<? extends GrantedAuthority> authorities) {
@@ -41,11 +41,11 @@ public class ApiAuthentication extends AbstractAuthenticationToken {
 
     @Override
     public @Nullable Object getCredentials() {
-        return null;
+        return PASSWORD_PROTECTED;
     }
 
     @Override
     public @Nullable Object getPrincipal() {
-        return null;
+        return this.user;
     }
 }
