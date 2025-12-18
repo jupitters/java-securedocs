@@ -62,4 +62,9 @@ public class ApiAuthentication extends AbstractAuthenticationToken {
     public void setAuthenticated(boolean authenticated) {
         throw new ApiException("You cannot set authentication");
     }
+
+    @Override
+    public boolean isAuthenticated() {
+        return this.authenticated;
+    }
 }
