@@ -1,5 +1,6 @@
 package com.jupitters.securedoc.security;
 
+import com.jupitters.securedoc.enums.LoginType;
 import com.jupitters.securedoc.service.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -31,6 +32,7 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
+        userService.updateLoginAttempt("ana", LoginType.LOGIN_ATTEMPT);
         return null;
     }
 
