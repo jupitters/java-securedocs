@@ -43,9 +43,9 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
             var authentication = ApiAuthentication.unauthenticated(user.getEmail(), user.getPassword());
             return getAuthenticationManager().authenticate(authentication);
         } catch (Exception e) {
+            log.error(e.getMessage());
             return null;
         }
-        return null;
     }
 
     @Override
