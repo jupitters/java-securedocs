@@ -9,7 +9,9 @@ import java.time.LocalDateTime;
 
 @Data
 public class User {
-    private String id;
+    private Long id;
+    private Long createdBy;
+    private Long updatedBy;
     private String userId;
     private String firstName;
     private String lastName;
@@ -21,10 +23,11 @@ public class User {
     private String lastLogin;
     private String createdAt;
     private String updatedAt;
-    private Integer loginAttempts;
+    private String role;
+    private String authorities;
     private Boolean accountNonExpired;
     private Boolean accountNonLocked;
+    private Boolean credentialsNonExpired;
     private Boolean enabled;
     private Boolean mfa;
-    private Role role;
 }
