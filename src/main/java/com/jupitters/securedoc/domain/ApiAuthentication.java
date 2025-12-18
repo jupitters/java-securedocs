@@ -1,6 +1,7 @@
 package com.jupitters.securedoc.domain;
 
 import com.jupitters.securedoc.entity.User;
+import com.jupitters.securedoc.exception.ApiException;
 import org.jspecify.annotations.Nullable;
 import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
@@ -47,5 +48,18 @@ public class ApiAuthentication extends AbstractAuthenticationToken {
     @Override
     public @Nullable Object getPrincipal() {
         return this.user;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public String getEmail() {
+        return this.email;
+    }
+
+    @Override
+    public void setAuthenticated(boolean authenticated) {
+        throw new ApiException("You cannot set authentication");
     }
 }
