@@ -1,5 +1,7 @@
 package com.jupitters.securedoc.security;
 
+import com.jupitters.securedoc.domain.ApiAuthentication;
+import com.jupitters.securedoc.dtorequest.LoginRequest;
 import com.jupitters.securedoc.enums.LoginType;
 import com.jupitters.securedoc.service.UserService;
 import jakarta.servlet.FilterChain;
@@ -14,10 +16,13 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AbstractAuthenticationProcessingFilter;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.util.AntPathMatcher;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 
 import static org.springframework.http.HttpMethod.POST;
+import static tools.jackson.core.StreamReadFeature.AUTO_CLOSE_SOURCE;
 
 @Slf4j
 public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter {
@@ -32,7 +37,14 @@ public class AuthenticationFilter extends AbstractAuthenticationProcessingFilter
 
     @Override
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException, IOException, ServletException {
-        userService.updateLoginAttempt("ana", LoginType.LOGIN_ATTEMPT);
+        try {
+            var user = new ObjectMapper().configure(AUTO_CLOSE_SOURCE, true).readValue(request.getInputStream(), LoginRequest.class);
+            userService.updateLoginAttempt("ana", LoginType.LOGIN_ATTEMPT);
+            var authentication = ApiAuthentication.unauthenticated(user.getEmail(), user.getPassword());
+            return getAuthenticationManager().authenticate(authentication);
+        } catch (Exception e) {
+            return null;
+        }
         return null;
     }
 
