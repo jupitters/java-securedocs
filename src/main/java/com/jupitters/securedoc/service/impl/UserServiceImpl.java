@@ -23,6 +23,7 @@ import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Map;
 
 import static com.jupitters.securedoc.enums.LoginType.LOGIN_ATTEMPT;
@@ -83,7 +84,12 @@ public class UserServiceImpl implements UserService {
                     user.setAccountNonLocked(false);
                 }
             }
-            case LOGIN_SUCCESS -> {}
+            case LOGIN_SUCCESS -> {
+                user.setAccountNonLocked(true);
+                user.setLoginAttempts(0);
+                user.setLastLogin(LocalDateTime.now());
+                userCache.evict(user.getEmail());
+            }
         }
         userRepository.save(user);
     }
